@@ -1,0 +1,446 @@
+openapi: 3.0.0
+info:
+  title: Faker API - by Alessandro Pietrantonio
+  version: 1.0.0
+  description: ''
+servers:
+  - url: https://fakerapi.it
+paths:
+  /api/v1/addresses:
+    get:
+      summary: Addresses
+      description: Get 100 addresses with en_US locale
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PagedResponse'
+                  - type: object
+                    properties:
+                      data: 
+                        type: array
+                        items: 
+                          $ref: '#/components/schemas/Address'
+  /api/v1/books:
+    get:
+      summary: Books
+      description: Get 100 books with en_US locale
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PagedResponse'
+                  - type: object
+                    properties:
+                      data: 
+                        type: array
+                        items: 
+                          $ref: '#/components/schemas/Book'
+  /api/v1/companies:
+    get:
+      summary: Companies
+      description: Get 100 companies with en_US locale
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/credit_cards:
+    get:
+      summary: Credit Cards
+      description: Get 100 credit cards with en_US locale
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/images:
+    get:
+      summary: Images
+      description: Get 100 kitten images with height of 300 pixels and locale en_US
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+        - name: _type
+          in: query
+          required: true
+          schema:
+            type: string
+            default: kittens
+        - name: _height
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '300'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/persons:
+    get:
+      summary: Persons
+      description: Get 100 persons with en_US locale and gender female
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+        - name: _gender
+          in: query
+          required: true
+          schema:
+            type: string
+            default: female
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/places:
+    get:
+      summary: Places
+      description: Get 100 places
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/products:
+    get:
+      summary: Products
+      description: Get 100 products with en_US locale and taxes of 10% and categories type set as string
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          schema:
+            type: string
+            default: en_US
+        - name: _taxes
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '10'
+        - name: _categories_type
+          in: query
+          required: true
+          schema:
+            type: string
+            default: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/texts:
+    get:
+      summary: Texts
+      description: Get 100 texts with it_IT locale and 250 characters length
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _locale
+          in: query
+          required: true
+          schema:
+            type: string
+            default: it_IT
+        - name: _characters
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '250'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/users:
+    get:
+      summary: Users
+      description: Get 100 users with en_US locale and gender male
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: _gender
+          in: query
+          required: true
+          schema:
+            type: string
+            default: male
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PagedResponse'
+                  - type: object
+                    properties:
+                      data: 
+                        type: array
+                        items: 
+                          $ref: '#/components/schemas/User'
+  /api/v1/custom:
+    get:
+      summary: Custom
+      description: Get 100 rows with first name, last name, country, birthday, email and vat
+      parameters:
+        - name: _quantity
+          in: query
+          schema:
+            type: integer
+            default: '100'
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+            default: firstName
+        - name: surname
+          in: query
+          required: true
+          schema:
+            type: string
+            default: lastName
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            default: country
+        - name: birthday
+          in: query
+          required: true
+          schema:
+            type: string
+            default: date
+        - name: vatId
+          in: query
+          required: true
+          schema:
+            type: string
+            default: vat
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  schemas:
+    PagedResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "OK"
+        code:
+          type: integer
+          example: 200
+        total:
+          type: integer
+          example: 1
+
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 0
+        street:
+          type: string
+          example: "666 Astrid Station Suite 064"
+        streetName:
+          type: string
+          example: "Harvey Glen"
+        buildingNumber:
+          type: string
+          example: "515"
+        city:
+          type: string
+          example: "Luciustown"
+        zipcode:
+          type: string
+          example: "20314"
+        country:
+          type: string
+          example: "Oman"
+        county_code:
+          type: string
+          example: "SC"
+        latitude:
+          type: number
+          format: float
+          example: -38.347746
+        longitude:
+          type: number
+          format: float
+          example: 60.997707
+
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "ARE you talking."
+        author:
+          type: string
+          example: "Parker Jakubowski"
+        genre:
+          type: string
+          example: "Nulla"
+        description:
+          type: string
+          example: "I wonder if I've been changed for Mabel! I'll try if I know I have ordered'; and she walked up towards it rather timidly, saying to her usual height. It was the White Rabbit, with a table set out."
+        isbn:
+          type: string
+          example: "9789498434214"
+        image:
+          type: string
+          example: "http://placeimg.com/480/640/any"
+        published:
+          type: string
+          format: date
+          example: "2009-08-28"
+        publisher:
+          type: string
+          example: "Nobis Sit"
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        firstname:
+          type: string
+          example: "Gage"
+        lastname:
+          type: string
+          example: "Armstrong"
+        email:
+          type: string
+          example: "hblick@hotmail.com"
+        phone:
+          type: string
+          example: "+8232856233724"
+        birthday:
+          type: string
+          format: date
+          example: "2018-03-14"
+        gender:
+          type: string
+          example: "male"
+        address:
+          $ref: '#/components/schemas/Address'
+        website:
+          type: string
+          example: "http://pollich.info"
+        image:
+          type: string
+          example: "http://placeimg.com/640/480/people"
